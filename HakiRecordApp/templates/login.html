@@ -12,12 +12,20 @@
     <link rel="stylesheet" href="{% static 'assets/css/login.css' %}">
 </head>
 <body>
-
+<div class="container">
+<div class="login_error">
+   {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-danger">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+</div>
 <div class="login">
-    
+
 
 <form action="/login/" class="login_form" method="post">
     {% csrf_token %}
+
     <img src="{% static 'assets/img/coat1.png' %}" alt="">
 
     <div class="text">
@@ -32,5 +40,6 @@
         </div>
 </form>
     </div>
+</div>
 </body>
 </html>

@@ -13,7 +13,9 @@ urlpatterns = [
     path('recent-actions/', views.recent_actions, name='recent_actions'),
     path('logout/', views.logout_view, name='logout'),
     path('contact/',views.contact, name='contact'),
-    path('evidence/',views.evidence_vault,name='evidence')
+    path('evidence/',views.evidence_vault,name='evidence'),
+    path('shifts/',views.shift_allocation,name='shifts'),
+    path('login_success/',views.login_success,name='login_success'),
 
 ]
 if settings.DEBUG:

@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>HakiRecord | Evidence</title>
+  <title>HakiRecord-Digital Occurrence Book</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -27,9 +27,8 @@
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Main CSS File -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
 
 </head>
 
@@ -47,7 +46,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{% url 'LandingPage' %}" >Home</a></li>
-          <li class="dropdown"><a href="#" class="active"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+         <li class="dropdown"><a href="#" class="active"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="{% url 'statement' %}">Record Statement</a></li>
                   <li><a href="{%  url 'cases' %}">View Cases</a></li>
@@ -57,7 +56,6 @@
                     <li><a href="{% url 'shifts' %}">Shift Allocation</a></li>
 
                 </ul>
-
                   <li><a href="{% url 'contact' %}">Contact</a></li>
              {% if user.is_authenticated %}
           <li>
@@ -88,48 +86,59 @@
     </div>
   </header>
   
-  <main >
-  <div class = "container">
+  <main class="main">
+      
+    <!-- Shift Allocation Section -->
+<section id="shift-allocation" class="shift-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Shift Allocation</h2>
+      <p>Assigned police officers currently on duty</p>
+    </div>
 
-    <h1>Uploaded Evidence</h1>
+    <div class="row">
 
-<div class="row gy-4">
-  {% for statement in statements %}
-  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-    <div class="service-item item-cyan position-relative p-3 rounded shadow-sm">
+      <!-- Shift Card -->
 
-      {% if statement.incident_evidence %}
-        {% if ".jpg" in statement.incident_evidence.url|lower or ".jpeg" in statement.incident_evidence.url|lower or ".png" in statement.incident_evidence.url|lower %}
-          <img src="{{ statement.incident_evidence.url }}" class="img-fluid rounded mb-3" style="height: 200px; object-fit: cover; width: 100%;">
-        {% elif ".mp4" in statement.incident_evidence.url|lower or ".mov" in statement.incident_evidence.url|lower %}
-          <video controls class="rounded mb-3" style="width: 100%; height: 200px; object-fit: cover;">
-            <source src="{{ statement.incident_evidence.url }}" type="video/mp4">
-          </video>
-        {% elif ".pdf" in statement.incident_evidence.url|lower %}
-          <a href="{{ statement.incident_evidence.url }}" target="_blank" class="btn btn-outline-danger btn-sm w-100 mb-2">
-            <i class="bi bi-file-earmark-pdf"></i> View PDF
-          </a>
-        {% elif ".docx" in statement.incident_evidence.url|lower or ".doc" in statement.incident_evidence.url|lower %}
-          <a href="{{ statement.incident_evidence.url }}" target="_blank" class="btn btn-outline-primary btn-sm w-100 mb-2">
-            <i class="bi bi-file-earmark-word"></i> View Word Document
-          </a>
-        {% else %}
-          <p class="text-muted text-center">Unsupported file format</p>
-        {% endif %}
-      {% else %}
-        <p class="text-muted text-center">No evidence uploaded</p>
-      {% endif %}
-
-      <h5 class="mt-2"><strong>OB No:</strong> {{ statement.ob_number }}</h5>
-      <p class="text-secondary"><strong>Description:</strong> {{ statement.incident_description }}</p>
+     
+      <div class="col-lg-4 col-md-6">
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center; transition: all 0.3s ease; margin-bottom: 30px;">
+          <img src="{% static 'assets/img/team/Police1.jpg' %}" alt="Officer Photo" style="width: 250px; height: 200px;" class="officer-img">
+          <div class="shift-info">
+            <h3 class="officer-name">Cpl. Jared Amollo</h3>
+            <p class="service-number">Service No: <b>931400C</b></p>
+            <p class="shift-time"  style="font-size: 0.95rem; font-weight: 600; color: #0b9edd;">6:00 AM - 12:00 PM</p>
+          </div>
+        </div>
+      </div>
+        
+         <div class="col-lg-4 col-md-6">
+        <div  style="background: #ffffff; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center; transition: all 0.3s ease; margin-bottom: 30px;">
+          <img src="{% static 'assets/img/team/Police4.jpg' %}" alt="Officer Photo" style="width: 300px; height: 200px;" class="officer-img">
+          <div class="shift-info">
+            <h3 class="officer-name">Cpl. John Doe</h3>
+            <p class="service-number">Service No: <b>931400C</b></p>
+            <p class="shift-time"  style="font-size: 0.95rem; font-weight: 600; color: #0b9edd;">6:00 AM - 12:00 PM</p>
+          </div>
+        </div>
+      </div>
+        
+         <div class="col-lg-4 col-md-6">
+        <div  style="background: #ffffff; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center;transition: all 0.3s ease; margin-bottom: 30px;">
+          <img src="{% static 'assets/img/team/Police5.jpg' %}" alt="Officer Photo" style="width: 300px; height: 200px;" class="officer-img">
+          <div class="shift-info">
+            <h3 class="officer-name">Cpl. Mary Mwikali</h3>
+            <p class="service-number">Service No: <b>931400C</b></p>
+            <p class="shift-time"  style="font-size: 0.95rem; font-weight: 600; color: #0b9edd;">6:00 AM - 12:00 PM</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  {% endfor %}
-</div>
+</section>
 
-</div>
 
-</main>
+  </main>
 
 <footer id="footer" class="footer dark-background">
 
@@ -203,8 +212,6 @@
   <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js'  %}"></script>
 
   <!-- Main JS File -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
   <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>

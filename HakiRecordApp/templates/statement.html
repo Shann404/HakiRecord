@@ -47,11 +47,17 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{% url 'LandingPage' %}" class="active">Home</a></li>
-          <li><a href="{% url 'LandingPage' %}#services">Services</a></li>
-{#          <li><a href="portfolio.html">Portfolio</a></li>#}
-{#          <li><a href="pricing.html">Pricing</a></li>#}
-{#          <li><a href="blog.html">Blog</a></li>#}
+          <li><a href="{% url 'LandingPage' %}" >Home</a></li>
+          <li class="dropdown"><a href="#" class="active"><span>Features</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="{% url 'statement' %}">Record Statement</a></li>
+                  <li><a href="{%  url 'cases' %}">View Cases</a></li>
+                  <li><a href="{% url 'evidence' %}">Evidence Vault</a></li>
+                  <li><a href="{% url 'recent_actions' %}">Audit Trail</a></li>
+                  <li><a href="#">Crime Analysis</a></li>
+                    <li><a href="{% url 'shifts' %}">Shift Allocation</a></li>
+
+                </ul>
                       <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
         <i  style="color: white;" class="mobile-nav-toggle d-xl-none bi bi-list"></i>

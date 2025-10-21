@@ -10,7 +10,7 @@
     width:400px;
     height: 500px;
     text-align: center;
-    margin-top: 200px;
+    margin-top: 130px;
 }
 
 .login_form label{
@@ -46,4 +46,13 @@ button:hover{
 img{
     width: 150px;
     margin-top: 30px;
+}
+.login_error{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-weight:bold;
+    font-size: 20px;
+    margin-top: 50px;
 }
