@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +52,40 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "HakiRecord Admin",
+    "site_header": "HakiRecord Admin Dashboard",
+    "site_brand": "HakiRecord",
+    "welcome_sign": "Welcome to HakiRecord Admin",
+    "copyright": "© 2025 HakiRecord",
+
+    # Top menu
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Website", "url": "/", "new_window": True},
+        {"model": "auth.User"},
+    ],
+
+    # Side Menu
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    # Icons for models
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "yourapp.YourModel": "fas fa-database",
+    },
+
+    # Custom CSS / JS
+    "custom_css": None,
+    "custom_js": None,
+
+    # Change theme colors
+    "theme": "slate",  # or "darkly", "flatly", "cosmo", etc.
+}
 
 ROOT_URLCONF = 'HakiRecord.urls'
 
@@ -127,6 +162,10 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# settings.py
+AFRICASTALKING_USERNAME = 'sandbox'
+AFRICASTALKING_API_KEY = 'atsk_59c5db275072c29ede3bedcd0e468821742854a7b494b2944257607818786e44cd9b0b76'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

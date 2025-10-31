@@ -57,9 +57,8 @@
     </div>
   </header>
      <div class="container">
-
-    <h2>Recent Actions</h2>
-    <table class="table table-bordered table-danger table-hover">
+       <h2>Recent Admin Actions</h2>
+    <table class="table table-bordered table-danger table-responsive">
         <thead>
             <tr>
                 <th>Date/Time</th>
@@ -70,25 +69,39 @@
             </tr>
         </thead>
         <tbody>
-            {% for action in actions %}
-            <tr>
-                <td>{{ action.action_time }}</td>
-                <td>{{ action.user }}</td>
-                <td>
-                    {% if action.is_addition %} Added
-                    {% elif action.is_change %} Modified
-                    {% elif action.is_deletion %} Deleted
-                    {% endif %}
-                </td>
-                <td>{{ action.object_repr }}</td>
-                <td>{{ action.content_type.model }}</td>
-            </tr>
-            {% empty %}
-            <tr><td colspan="5">No actions found.</td></tr>
-            {% endfor %}
-        </tbody>
+    {% for action in actions %}
+    <tr>
+        <td>{{ action.action_time }}</td>
+        <td>{{ action.user }}</td>
+        <td>
+            {% if action.is_addition %}
+                <span class="badge bg-success">Added</span>
+            {% elif action.is_change %}
+                <span class="badge bg-warning text-dark">Modified</span>
+                {% if action.detailed_changes %}
+                    <ul class="mt-2 mb-0">
+                        {% for field, diff in action.detailed_changes.items %}
+                            <li>
+                                <strong>{{ field|title }}</strong>:
+                                {{ diff.old }} →
+                                <span class="text-success">{{ diff.new }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% elif action.is_deletion %}
+                <span class="badge bg-danger">Deleted</span>
+            {% endif %}
+        </td>
+        <td>{{ action.object_repr }}</td>
+        <td>{{ action.content_type.model|title }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No actions found.</td></tr>
+    {% endfor %}
+</tbody>
     </table>
-     </div>
+    </div>
 
 <footer id="footer" class="footer dark-background">
 

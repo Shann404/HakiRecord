@@ -54,7 +54,7 @@
                   <li><a href="{%  url 'cases' %}">View Cases</a></li>
                   <li><a href="{% url 'evidence' %}">Evidence Vault</a></li>
                   <li><a href="{% url 'recent_actions' %}">Audit Trail</a></li>
-                  <li><a href="#">Crime Analysis</a></li>
+                  <li><a href="{% url 'crime_analysis' %}">Crime Analysis</a></li>
                     <li><a href="{% url 'shifts' %}">Shift Allocation</a></li>
 
                 </ul>
@@ -66,10 +66,19 @@
 
     </div>
   </header>
-
+<div class="container">
 <h2 style="text-align: center"> Record Statements</h2>
+<div class="success_message">
+   {% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-success"><p style="text-align:center">{{ message }}</p></div>
+  {% endfor %}
+{% endif %}
+</div>
+</div>
  <!-- Services Section -->
     <section id="services" class="services section light-background">
+
 
       <div class="container">
         <div class="row gy-4">
