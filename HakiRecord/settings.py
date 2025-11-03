@@ -12,17 +12,29 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+
+
+env_path = os.path.join(BASE_DIR, '.env')
+
+if not os.path.exists(env_path):
+
+    env_path = '/etc/secrets/.env'
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5x+5-^@6)ce1-joyfait^r+8)^iug+=o_%x^$rsxep!cfhic$='
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -163,9 +175,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# settings.py
-AFRICASTALKING_USERNAME = 'sandbox'
-AFRICASTALKING_API_KEY = 'atsk_59c5db275072c29ede3bedcd0e468821742854a7b494b2944257607818786e44cd9b0b76'
+# Africa's Talking credentials
+AFRICASTALKING_USERNAME = env('AFRICASTALKING_USERNAME')
+AFRICASTALKING_API_KEY = env('AFRICASTALKING_API_KEY')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
